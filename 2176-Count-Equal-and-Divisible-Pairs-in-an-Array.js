@@ -41,3 +41,13 @@ var countPairs = function(nums, k) {
 // console.log(countPairs([3,1,2,2,2,1,3],2))
 // console.log(countPairs([1,2,3,4],1))
 console.log(countPairs([5,5,9,2,5,5,9,2,2,5,5,6,2,2,5,2,5,4,3],7))
+
+
+// 
+/*
+answer took 14 mins 
+Runtime: 109 ms, faster than 29.82% of JavaScript online submissions for Count Equal and Divisible Pairs in an Array.
+Memory Usage: 43.1 MB, less than 17.17% of JavaScript online submissions for Count Equal and Divisible Pairs in an Array.
+
+
+*/

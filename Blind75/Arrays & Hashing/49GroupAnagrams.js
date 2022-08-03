@@ -23,11 +23,12 @@ var groupAnagrams = function(strs) {
         //split word to letters and sort
 
         //if (word) is a key in hash than we push the currnt strs[i] to that array with that key 
-        // so will creat key 'a,e,t' and push :"eat" on first iteration
+      //if key already exists 'a,e,t' then pushes "tea" , "ate"
       if(hash[word]){
         hash[word].push(strs[i])
       }
-      //if key already exists 'a,e,t' then pushes "tea" , "ate"
+
+              // so will creat key 'a,e,t' and push :"eat" on first iteration
       else{
         hash[word] =[strs[i]]
       }

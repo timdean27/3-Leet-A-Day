@@ -7,6 +7,11 @@ const items = [
     { name: 'Computer', price: 1000 },
     { name: 'Keyboard', price: 25 },
 ]
+
+// sort
+let nums1 = [0,3,5,4,7,2,1]
+nums1.sort((a, b)=> a - b)
+console.log(nums1)
 //filter
 const filteredItems = items.filter((item)=>{
     return item.price <= 100

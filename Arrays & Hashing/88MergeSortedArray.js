@@ -35,7 +35,7 @@
 
 
 
-// The final sorted array should not be returned by the function,
+// The final sorted array should not be returned by the function
 // but instead be stored inside the array nums1
 
 var merge = function(nums1, m, nums2, n) {

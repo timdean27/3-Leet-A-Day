@@ -9,13 +9,6 @@
 // Note that mean is an integer, so the sum of the n + m rolls should be divisible by n + m.
 
 
-
-
-
-
-
-
-
 function solution(A, M , F){
 // if reaming number of rolls can not add up to remaing averge return [0].
 //exapmle if avg remaing = 3 and have F =4 dice, or if avg = 14 and have f+2 dice 

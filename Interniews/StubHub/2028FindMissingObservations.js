@@ -44,7 +44,7 @@ return missingDice
 }
 
 console.log(solution([3,2,4,3],4,2))
-
+console.log(solution([1,5,6],3,4))
 //M is the mean of all dice rolled
 //F is the missing dice rolls
 //from example if we have 4 rolls and F = 2 M = 4

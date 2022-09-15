@@ -26,16 +26,22 @@ var topKFrequent = function(nums, k) {
             hash[nums[i]] = 1
         }
     }
+
     let values = Object.values(hash)
+    // stored original hash values in values making a copy of orinal for sorting
     console.log("values",values)
     let sorted = values.sort((a,b)=> b-a)
     console.log("sorted",sorted)
-
+    // stored sorted hash values in sorted
+    // this will put the largest frquinces at the front and allow us 
+    // to slice for those and store in K values
+    // we need original values order to itirate and find later
     let k_Values = sorted.slice(0, k)
     console.log("k_Values",k_Values)
+
     let keys = Object.keys(hash)
     console.log("keys ", keys )
-    console.log(hash)
+    console.log("full hash" ,hash)
 
     //need to unsort values
     values = Object.values(hash)
@@ -44,6 +50,8 @@ var topKFrequent = function(nums, k) {
     for(let i = 0; i < values.length; i++){
         for(let j = 0 ; j <= k; j++){
             // console.log("values[i]" ,values[i] , i)
+            // find where values == highest frequencey values and push keys
+            // we dont want to repeat search for high frequencey values or we will push key twice
             if(values[i] == k_Values[j] && k_Values[j] != k_Values[j-1]){
                 result.push(keys[i])
             }

@@ -9,7 +9,7 @@
 // Note that mean is an integer, so the sum of the n + m rolls should be divisible by n + m.
 
 
-function solution(A, M , F){
+function missingRolls(A, M , F){
 // if reaming number of rolls can not add up to remaing averge return [0].
 //exapmle if avg remaing = 3 and have F =4 dice, or if avg = 14 and have f+2 dice 
 
@@ -22,29 +22,61 @@ for(let i = 0; i < length; i++){
  sum = sum + A[i]
 }
 console.log(sum)
-let remaningAVG = ((M *(length + F)) - sum)
+let remainingAVG = ((M *(length + F)) - sum)
+console.log("remainingAVG",remainingAVG)
 // this will give us the remaing Average that the F dice must add to
 // solve for outlier cases where F dice cant equal averag
-if(remaningAVG < F || remaningAVG > F * 6){
+if(remainingAVG < F || remainingAVG > F * 6){
     return []
 }
 
-while (remaningAVG > 0){
-    // the largets value we can remove is going to be the min of 6
-    // or the remaing average - reaming dice + 1(always leaving 1 for next dice)
-    let currentDice = Math.min(6, remaningAVG - F + 1)
+while (remainingAVG > 0){
+    // the largest value we can remove is going to be the min of 6
+    // or the remaining average - remaining dice + 1(always leaving 1 for next dice)
+    let currentDice = Math.min(6, remainingAVG - F + 1)
     missingDice.push(currentDice)
     // remove value from average and F
     F = F-1
-    remaningAVG = (remaningAVG - currentDice)
+    remainingAVG = (remainingAVG - currentDice)
 }
 
 return missingDice
     
 }
 
-console.log(solution([3,2,4,3],4,2))
-console.log(solution([1,5,6],3,4))
+
+
+// var missingRolls = function(rolls, mean, n) {
+//     let expectedTotal = (rolls.length + n) * mean;
+//     let total = 0;
+//     let remainder = 0;
+//     let output = []
+//     rolls.forEach(roll => {
+//         total += roll;
+//     })
+//     if(total + (6 * n) < expectedTotal || total + (1 * n) > expectedTotal) return output;
+//     const remainingToBeAdded = (expectedTotal - total) / n;
+//     console.log("remainingToBeAdded",remainingToBeAdded)
+//     while(n) {
+//         let wholeNumber = Math.floor(remainingToBeAdded)
+       
+//         remainder += (remainingToBeAdded - wholeNumber);
+//         console.log("remainder",remainder);
+//         if(remainder >= 1) {
+//             wholeNumber++;
+//             remainder--;
+//         }
+//         console.log("wholeNumber",wholeNumber);
+//         n--;
+//         // if(!n && remainder > 0.999) wholeNumber++;
+//         output.push(wholeNumber);
+//     }
+//     return output;
+// };
+
+// console.log(missingRolls([3,2,4,3],4,2))
+// console.log(missingRolls([1,5,6],3,4))
+console.log(missingRolls([4,5,6,2,3,6,5,4,6,4,5,1,6,3,1,4,5,5,3,2,3,5,3,2,1,5,4,3,5,1,5],4,40))
 //M is the mean of all dice rolled
 //F is the missing dice rolls
 //from example if we have 4 rolls and F = 2 M = 4

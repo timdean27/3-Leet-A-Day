@@ -1,4 +1,4 @@
-var Hashmap = function(nums, k) {
+var Hashmap = function(nums) {
     let hash = {}
 
     for(let i = 0; i < nums.length; i++){
@@ -18,7 +18,8 @@ var Hashmap = function(nums, k) {
     let keys = Object.keys(hash)
         console.log("keys ", keys )
         keys.map(x => console.log("map keys",x))
-        console.log(hash)
+        console.log("hash", hash)
+        return hash
 };
 
 console.log(Hashmap([1,1,1,2,2,3]))

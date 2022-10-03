@@ -20,10 +20,21 @@
 
 
 var maxProfit = function(prices) {
+    let lowest = prices[0]
+    let maxProfit = 0
+    for(let i = 0; i < prices.length; i++) {
+        lowest = Math.min(lowest, prices[i])
+        console.log("lowest", lowest)
+        //Can not go back days and get lower so once maxProfit is set it doesnt matter if price drops
+        //as long as Maxprofit isnt greater
+        maxProfit = Math.max(maxProfit, prices[i] - lowest)
+        console.log("maxProfit", maxProfit)
+    }
 
+    return (maxProfit)
 };
 
-console.log(maxProfit([7,1,5,3,6,4]))
+console.log(maxProfit([7,2,8,1,6,4]))
 // console.log(maxProfit([7,6,4,3,1]))
 // console.log(maxProfit([2,4,1]))
 // console.log(maxProfit([7,6,4,3,1]))

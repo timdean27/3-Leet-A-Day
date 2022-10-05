@@ -15,20 +15,23 @@
 
 
 var containsDuplicate = function(nums) {
-    nums.sort((a,b)=> a - b)
-    console.log(nums)
-    let result = 0
-    for(let i = 0; i < nums.length; i++){
-        console.log(nums[i+1])
-        console.log(nums[i])
-        if(nums[i] == nums[i+1]){
-            result = 1
-        }
+ let hash = {}
+
+ for(let i = 0; i < nums.length; i++) {
+    if(hash[nums[i]]){
+        hash[nums[i]].push(nums[i])
     }
-    if(result > 0){
-        return true
+    else{
+        hash[nums[i]] = [nums[i]]
     }
-    else{return false}
+ }
+
+ if(Object.keys(hash).length != nums.length){
+    return true
+ }
+ else{
+    return false
+ }
 };
 
 // console.log(containsDuplicate([1,2,3,1]))

@@ -27,10 +27,7 @@ var checkIfPangram = function(sentence) {
         hash[word[i]] =word[i]
     }
 
-if(Object.keys(hash).length == 26){
-    return true
-}
-else{return false}
+    return Object.keys(hash).length == 26
 };
 
 

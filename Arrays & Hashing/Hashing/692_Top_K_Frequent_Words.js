@@ -22,6 +22,7 @@ var topKFrequent = function(words, k) {
 let hash ={}
 
 for(let i = 0; i < words.length; i++){
+    if (!words) return [];
     //if hash already exists push words[i] into key
     if(hash[words[i]]){
         hash[words[i]]++

@@ -30,7 +30,8 @@ var topKFrequent = function(nums, k) {
     let values = Object.values(hash)
     // stored original hash values in values making a copy of orinal for sorting
     console.log("values",values)
-    let sorted = values.sort((a,b)=> b-a)
+    let sorted = [...values]
+    sorted.sort((a,b)=> b-a)
     console.log("sorted",sorted)
     // stored sorted hash values in sorted
     // this will put the largest frquinces at the front and allow us 
@@ -43,9 +44,6 @@ var topKFrequent = function(nums, k) {
     console.log("keys ", keys )
     console.log("full hash" ,hash)
 
-    //need to unsort values
-    values = Object.values(hash)
-    console.log("values",values)
 
     for(let i = 0; i < values.length; i++){
         for(let j = 0 ; j <= k; j++){

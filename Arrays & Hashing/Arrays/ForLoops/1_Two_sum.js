@@ -20,20 +20,38 @@
 // Input: nums = [3,3], target = 6
 // Output: [0,1]
 
+// const twoSum =(nums , target) =>{
+
+//     let res =[]
+
+//     for(let i = 0; i < nums.length; i++){  
+//         for(let j = i+1; j < nums.length; j++){
+//             if((nums[i] + nums[j]) == target){
+//                 res = [[i],[j]]
+//             }
+//         }
+//     }
+//     return res
+
+
+// }
 const twoSum =(nums , target) =>{
 
     let res =[]
-
-    for(let i = 0; i < nums.length; i++){  
-        for(let j = i+1; j < nums.length; j++){
-            if((nums[i] + nums[j]) == target){
-                res = [[i],[j]]
-            }
+    let x = 0
+    while (x < nums.length-1){
+    for(let i = x+1; i < nums.length; i++){  
+        let sum = nums[x] + nums[i]
+        console.log(sum)
+        if(sum == target){
+            res.push(x)
+            res.push(i)
+            return res
         }
     }
-    return res
-
+    x++
+}
 
 }
 
-console.log(twoSum([3,2,4], 6))
+console.log(twoSum([2,5,5,11], 10))

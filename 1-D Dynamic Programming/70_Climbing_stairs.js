@@ -26,12 +26,16 @@ var climbStairs = function(n) {
   dp[1] = 1
   dp[2] = 2
   for(let i = 3; i <= n; i++){
-    // the way to get to the step i is going to be the solution to get to previous + solution to get to previous-1
+    // the way to get to the step i is going to be the solution to get to previous(i-1) + solution to get to previous-1(i-2)
     dp[i] = dp[i-1] + dp[i-2]
+    console.log("i",i)
+    console.log("dp[i]",dp[i])
+    console.log("dp[i-1]",dp[i-1])
+    console.log("dp[i-2]",dp[i-2])
   }
   return dp[n]
 };
 
 console.log(climbStairs(6))
-console.log(climbStairs(2))
-console.log(climbStairs(3))
+// console.log(climbStairs(2))
+// console.log(climbStairs(3))

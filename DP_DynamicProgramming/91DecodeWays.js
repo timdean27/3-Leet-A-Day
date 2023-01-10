@@ -54,3 +54,4 @@ var numDecodings = function(s) {
 }
 
 console.log(numDecodings("226"))
+console.log(numDecodings("22"))

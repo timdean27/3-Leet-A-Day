@@ -31,12 +31,22 @@
 
 
 def TwoSum(nums, target):
-    seen = {}  # Using a dictionary to store seen values along with their indices
+    # Create an empty dictionary to store seen values along with their indices
+    seen = {}  
+    
+    # Loop through the array along with their indices
     for i, num in enumerate(nums):
+        
+        # Calculate the complement needed to reach the target
         complement = target - num
+        
+        # Check if the complement is already seen
         if complement in seen:
-            return [seen[complement], i]  # Return indices of the two numbers
-        seen[num] = i  # Store the current number along with its index in the dictionary
-    return None  # If no solution is found
-
-print(TwoSum([2, 7, 11, 15], 9))
+            # If yes, return the indices of the two numbers that add up to the target
+            return [seen[complement], i]  
+        
+        # Store the current number along with its index in the dictionary
+        seen[num] = i  
+    
+    # If no solution is found, return None
+    return None  

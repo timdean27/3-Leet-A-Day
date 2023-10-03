@@ -36,7 +36,6 @@ def TwoSum(nums, target):
     
     # Loop through the array along with their indices
     for i, num in enumerate(nums):
-        
         # Calculate the complement needed to reach the target
         complement = target - num
         

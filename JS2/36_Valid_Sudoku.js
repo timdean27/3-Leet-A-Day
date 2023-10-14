@@ -72,6 +72,6 @@ const sudokuBoard = [
     [".",".",".",".","8",".",".","7","9"]
 ];
 
-console.log(isValidSudoku(sudokuBoard));  // Output: true
+console.log(isValidSudoku(sudokuBoard)); 
 
 

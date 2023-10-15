@@ -33,3 +33,11 @@ var getConcatenation = function(nums) {
 };
 
 console.log(getConcatenation([1, 3, 2, 1]));
+
+
+// var getConcatenation = function(nums) {
+//     let ans = nums.concat(nums); // Concatenate the nums array with itself
+//     return ans;
+// };
+
+// console.log(getConcatenation([1, 3, 2, 1]));

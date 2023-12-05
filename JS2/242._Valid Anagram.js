@@ -48,4 +48,21 @@ var isAnagram = function(s, t) {
     return true;
 };
 
-console.log(isAnagram("rat", "car")); 
+// console.log(isAnagram("rat", "car")); 
+
+
+const isAnagram2 = function(s,t){
+    if (s.length != t.length) return false
+    // console.log(s,t)
+    let sSplit = s.split("").sort()
+    let tSplit = t.split("").sort()
+    // console.log(sSplit,tSplit)
+    for (s in sSplit){
+        // console.log(sSplit[s] , tSplit[s])
+        if (sSplit[s] != tSplit[s]) return false
+    }
+
+    return true
+}
+
+console.log(isAnagram2("anagram", "nagaram"))

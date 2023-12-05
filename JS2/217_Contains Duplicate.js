@@ -43,3 +43,25 @@ var containsDuplicate = function(nums) {
 
 
 console.log(containsDuplicate([1,1,1,3,3,4,3,2,4,2]))
+
+
+var containsDuplicate2 = function(nums) {
+    // Create an empty Set to store unique elements
+    let uniqueElements = new Set();
+    
+    for (let num of nums) {
+       console.log(num);
+       console.log(uniqueElements);
+ 
+       if (uniqueElements.has(num)) {
+          return true;
+       } else {
+          uniqueElements.add(num);
+       }
+    }
+ 
+    return false;
+ }
+ 
+ console.log(containsDuplicate2([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]));
+ 

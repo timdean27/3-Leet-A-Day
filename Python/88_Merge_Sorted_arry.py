@@ -1,4 +1,15 @@
-def merge(nums1, m, nums2, n):
+def merge(nums1,m,nums2,n):
+    for i in range(m,len(nums1)):
+        print(i, nums1[i])
+        nums1[i] = nums2[i-m]
+    nums1.sort()
+    return nums1
+print(merge([1,2,3,0,0,0], 3, [2,5,6], 3))
+
+
+
+def merge(nums1,m,nums2,n):
+
     for i in range(m, m + n):
         nums1[i] = nums2[i - m]
 
@@ -7,9 +18,4 @@ def merge(nums1, m, nums2, n):
         for j in range(0, m + n - i - 1):
             if nums1[j] > nums1[j + 1]:
                 nums1[j], nums1[j + 1] = nums1[j + 1], nums1[j]
-
-    return nums1
-
-# Example usage:
-result = merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3)
-print(result)
+print(merge([1,2,3,0,0,0], 3, [2,5,6], 3))

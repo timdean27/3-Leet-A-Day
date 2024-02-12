@@ -30,7 +30,7 @@ class Solution:
                 new += letters.lower()
                 print(new)
         backward = ''
-        for i in range(len(new)):
+        for i in range(1, len(new) + 1):
             backward += new[len(new) - i]
             print(backward)
 

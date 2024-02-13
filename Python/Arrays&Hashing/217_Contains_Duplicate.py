@@ -20,7 +20,9 @@ def containsDuplicate(nums: List[int]) -> bool:
     hashset = set()
 
     for n in nums:
+        print(n,hashset)
         if n in hashset:
+            # return true it number is found in hashset, contians duplicates
             return True
         hashset.add(n)
     return False

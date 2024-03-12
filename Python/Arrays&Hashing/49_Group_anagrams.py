@@ -34,6 +34,7 @@ class Solution:
                 group[sorted_word] = [word]
 
             # Convert the values of the dictionary to a list of lists
+        print(group)
         ans = list(group.values())
         return ans
     

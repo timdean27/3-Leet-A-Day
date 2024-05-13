@@ -23,21 +23,43 @@ const graph = {
     'F': ['C', 'E']
 };
 
-// Function to perform DFS recursively
+// Recursive DFS traversal function
 const dfsRecursive = (node, visited, graph) => {
     if (!visited[node]) {
         visited[node] = true;
-        console.log("Visited node:", node);
+        console.log("Visited node (Recursive):", node);
         // Explore neighbors recursively
         graph[node].forEach(neighbor => dfsRecursive(neighbor, visited, graph));
     }
 };
 
-// Function to perform DFS traversal
-const dfsTraversal = (startNode, graph) => {
+// Iterative DFS traversal function
+const dfsIterative = (startNode, graph) => {
     const visited = {};
-    dfsRecursive(startNode, visited, graph);
+    const stack = [startNode]; // Initialize stack with start node
+
+    while (stack.length > 0) {
+        const currentNode = stack.pop(); // Pop the top node from the stack
+
+        // If node has not been visited yet, mark it as visited and explore its neighbors
+        if (!visited[currentNode]) {
+            visited[currentNode] = true;
+            console.log("Visited node (Iterative):", currentNode);
+
+            // Push unvisited neighbors onto the stack
+            graph[currentNode].forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    stack.push(neighbor);
+                }
+            });
+        }
+    }
 };
 
-// Perform DFS traversal starting from node 'A'
-dfsTraversal('A', graph);
+// Perform DFS traversal starting from node 'A' using both methods
+console.log("Recursive DFS:");
+dfsRecursive('A', {}, graph);
+
+console.log("\nIterative DFS:");
+dfsIterative('A', graph);
+

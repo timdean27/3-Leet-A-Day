@@ -6,49 +6,61 @@
 
  
 
-// Example 1:
-
-// Input: nums = [2,7,11,15], target = 9
-// Output: [0,1]
-// Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
-// Example 2:
-
-// Input: nums = [3,2,4], target = 6
-// Output: [1,2]
-// Example 3:
-
-// Input: nums = [3,3], target = 6
-// Output: [0,1]
-
 // const twoSum =(nums , target) =>{
 
-//     let res =[]
-
-//     for(let i = 0; i < nums.length; i++){  
-//         for(let j = i+1; j < nums.length; j++){
-//             if((nums[i] + nums[j]) == target){
-//                 res = [[i],[j]]
-//             }
+//     let x = 0
+//     while (x < nums.length-1){
+//     for(let i = x+1; i < nums.length; i++){  
+//         let sum = nums[x] + nums[i]
+//         console.log(sum)
+//         if(sum == target){
+//             return [x,i]
 //         }
 //     }
-//     return res
-
+//     x++
+// }
 
 // }
+
+// console.log(twoSum([2,5,5,11], 10))
+
+// const twoSum = (nums, target) => {
+//     const hash = {};
+//     for (let i = 0; i < nums.length; i++) {
+//         let potentialKey = target - nums[i];
+//         if (hash[potentialKey] !== undefined) {
+//             return [i, hash[potentialKey]];
+//         } else {
+//             hash[nums[i]] = i;
+//         }
+//     }
+// };
+
+// console.log(twoSum([2, 7, 11, 15], 9)); // Output: [1, 0] (because nums[1] + nums[0] = 7 + 2 = 9)
+
+
 const twoSum =(nums , target) =>{
 
-    let x = 0
-    while (x < nums.length-1){
-    for(let i = x+1; i < nums.length; i++){  
-        let sum = nums[x] + nums[i]
-        console.log(sum)
-        if(sum == target){
-            return [x,i]
+    const hash = {}
+    //set hash key to value of index and value to index 
+    //ex: nums[1] = 7 hash would be hash[7] = 1
+    for(let i = 0 ; i < nums.length; i++){
+        let val = nums[i]
+        hash[val] = i
+        console.log(hash)
+    }
+    //get target - current nums[i]
+    // if value is in hash then nums[i] + hash[value] = target
+    // return current index and index stored in hash
+    for(let i = 0 ; i < nums.length; i++){
+        let potentailKey = target - nums[i]
+        if(hash[potentailKey] && hash[potentailKey] !== i){
+            return [i, hash[potentailKey]]
         }
     }
-    x++
-}
 
 }
 
-console.log(twoSum([2,5,5,11], 10))
+console.log(twoSum([2,7,11,15], 9))
+
+

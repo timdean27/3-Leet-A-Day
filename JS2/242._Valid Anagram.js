@@ -50,8 +50,36 @@ var isAnagram = function(s, t) {
 
 // console.log(isAnagram("rat", "car")); 
 
+// second solution
+var isAnagram2 = function(s, t) {
+    debugger
+    const map = new Map()
+    for(const c of s){
+        // Loop through each character `c` in the string `s`.
+        const count = map.get(c) || 0;
+        // Get the current count of the character `c` from the map. If the character is not found, default to 0.
+        map.set(c , count+1)
+        // Increment the count of the character `c` by 1 and update the map.
+    }
+    for(const c of t){
+        // Loop through each character `c` in the string `t`.
+        const count = map.get(c) || 0;
+        // Get the current count of the character `c` from the map. If the character is not found, default to 0.
+        map.set(c , count -1)
+    }
+    for ( const [keyPair,valuePair] of map.entries()){
+        // Loop through each key-value pair `[keyPair,valuePair]` in the map.
+        console.log([keyPair,valuePair])
+        if (valuePair !== 0){
+            // Check if the value `v` is not equal to 0.
+            return false
+        }
+    }
+    return true
+}
 
-const isAnagram2 = function(s,t){
+// third solution
+const isAnagram3 = function(s,t){
 
     let sSplit = s.split("").sort().join("")
     let tSplit = t.split("").sort().join("")

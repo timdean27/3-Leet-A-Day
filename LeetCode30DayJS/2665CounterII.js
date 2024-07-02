@@ -47,3 +47,39 @@ function counter(init, calls) {
     return calls.map(call => counterInstance[call]());
 }
 console.log(counter(init = 5, calls = ["increment","reset","decrement"]))
+
+
+// with Class and constructor 
+
+class Counter {
+    constructor(init){
+        this.init = init;
+        this.count = init;
+    }
+    increment(){
+        return ++this.count
+    }
+    decrement(){
+        return --this.count
+    }
+    reset(){
+        this.count = this.init
+        return this.count
+    }
+}
+
+// Function to process the calls
+function processCalls(init, calls) {
+    const counter = new Counter(init);
+    const results = [];
+    for (const call of calls) {
+        results.push(counter[call]());
+    }
+    return results;
+}
+
+// Example usage
+const init = 5;
+const calls = ["increment", "reset", "decrement"];
+const output = processCalls(init, calls);
+console.log(output); // Output: [6, 5, 4]

@@ -7,9 +7,9 @@
  
 
 const createCounter = function(n) {
-    let count = n-1;
+    let count = n;
     return function() {
-        return ++count;
+        return count++; //count is retunred and then incremented
     };
 };
 
@@ -18,4 +18,4 @@ const counter = createCounter(10)
 console.log(counter()) // 10
 console.log(counter())  // 11
 console.log(counter())  // 12
- 
+ // each time the fucntion is called it is passed the prior as a stored hiddin value

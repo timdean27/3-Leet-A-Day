@@ -80,6 +80,6 @@ function processCalls(init, calls) {
 
 // Example usage
 const init = 5;
-const calls = ["increment", "reset", "decrement"];
+const calls = ["increment", "reset", "decrement","increment"];
 const output = processCalls(init, calls);
-console.log(output); // Output: [6, 5, 4]
+console.log(output); // Output: [6, 5, 4 , ]

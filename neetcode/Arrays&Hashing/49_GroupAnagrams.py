@@ -31,9 +31,9 @@ class Solution:
         # Looping through each string in the input list.
         for s in strs:
             # Sorting the string and using the sorted string as a key in the dictionary.
-            sorted_str = ''.join(sorted(s))
-            # Appending the original string to the list corresponding to the sorted key.
-            anagrams[sorted_str].append(s)    
+            sorted_str_key = ''.join(sorted(s))
+            # Appending the original string (s) to the list corresponding to the sorted key [sorted_str]
+            anagrams[sorted_str_key].append(s)    
         # Returning the values of the dictionary as a list of lists.
         return list(anagrams.values())
     

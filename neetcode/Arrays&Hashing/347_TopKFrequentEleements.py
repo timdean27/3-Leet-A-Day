@@ -27,10 +27,10 @@ class Solution:
             # print(hash)
         
         result = []
-        for _ in range(k):
-            max_freq = -1
+        for all in range(k):
+            max_freq = -9
             max_freq_num = None
-            # loop through items and compair freq to current max_freq
+            # loop through items and compare freq to current max_freq
             # highets will be removed and loop again with remainder to find k values
             for num, freq in hash.items():
                 print (num , freq)

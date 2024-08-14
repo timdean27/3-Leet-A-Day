@@ -19,20 +19,14 @@
 # Output: [0,1]
 class Solution(object):
     def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        x = 0
-        while x < len(nums):
-            for i in range(x+1 , len(nums)):
-                print(nums[i])
-                if(nums[i]+ nums[x] == target):
-                    return[i,x]
-            x = x+1
-        return None
-
+        hash = {}
+        for i in range(len(nums)):
+            # if the diffrince from the target - nums[i] already in the hash then return index of that value and current i 
+            diffrence = target - nums[i]
+            if diffrence in hash:
+                return[hash[diffrence] , i]
+            # if not then push the value of nums[i] into the hash to test vs future diffrences
+            hash[nums[i]] = i
 
 sol = Solution()
 

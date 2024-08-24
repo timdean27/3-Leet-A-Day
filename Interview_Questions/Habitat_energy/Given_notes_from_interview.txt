@@ -1,0 +1,48 @@
+Code runs without errors, though doesn't write data to the database
+
+Things you might pick up on:
+
+    connection doesn't actually commit, so no data is actually written (a bit mean)
+    connection isn't closed, so leaves a dangling session
+    Hardcoded password (and username etc)
+    SQL command is hard to read, and undocumented. Table also undocumented.
+    log-file doesn't log inputs
+
+Ways this could be better:
+    Use context managers to ensure sessions are closed
+    Use an ORM like sqlalchemy
+
+
+
+------
+Below are the answers for the basic test:
+
+Things you might pick up on:
+
+    /usr/bin/python2 instead of /usr/bin/env python2 (it's less portable, precludes virtual-environments)
+    Uses python2, so range is a list, not a generator. (so takes up memory unnecessarily)
+    No Docstring (poor form, documentation for Great Good)
+    No type-hinting (ditto)
+    Not much commenting (ditto)
+    No __name__=="__main__" (means we can't import the function without running it. Really, the "test" should be somewhere else)
+    Overrides sum(), then overrides it again (Potential for confusion)
+    No tests of acceptable range: what happens to negative numbers?
+    Doesn't use += (syntactic sugar, really)
+    Hard-coded string (better to have such settings explicitly in one place, like the top of the page)
+    Uses file instead of open (file is deprecated in Py2, removed in Py3)
+    Doesn't use a with-block/context-manager, doesn't close the file, file is open the whole time (stops other programs using it)
+    Uses old style string formatting.
+        .format is better
+        bonus points for f strings
+    Uses mutable list as a default argument (https://docs.python-guide.org/writing/gotchas/)
+    File-writing should probably be factored out
+    "Between start_number and end_number" is ambiguous, not obvious that it uses Python's default range of [start, end)
+
+Ways this could be better:
+
+    Could use a list comprehension (no size/speed improvements, but clarity)
+    Could use something functional like functools.reduce
+    Could use generators (xrange, or range in python3)
+    Could vectorise, using numpy
+    Could just use the formula for sum-of-squares: n(n+1)(2n+1)/6
+    Could memoise

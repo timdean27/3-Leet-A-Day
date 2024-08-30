@@ -25,17 +25,20 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
+        startPrice = 0
+        max_profit = 0 
+        for i in range(startPrice+ 1, len(prices)):
+            # find the lowest price , this does not mean that max profit will alwaays start with the lowest price
+            # this part just find the lowest price next checks if we find a larger max profit with this new lower price
+            # but if we hit a lower price in series that means we have already found max profit or we will find it checking with this new low
+            if prices[startPrice] > prices[i]:
+                startPrice = i
+            if prices[i] - prices[startPrice] > max_profit:
+                max_profit = prices[i] - prices[startPrice]
 
-        left = 0
-        maxProfit = 0
-        for i in range(left+1 ,len(prices)):
-            if prices[i] < prices[left]:
-                left = i
-            if prices[i] - prices[left] > maxProfit:
-                maxProfit = prices[i] - prices[left]
-                print(maxProfit , prices[i] , prices[left])
-            
-        return maxProfit
+        return max_profit
+
 
 sol = Solution()
 print(sol.maxProfit([7,1,5,3,6,4]))
+print(sol.maxProfit([7,6,4,3,1]))

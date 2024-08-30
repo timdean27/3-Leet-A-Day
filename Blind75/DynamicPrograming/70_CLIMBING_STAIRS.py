@@ -21,47 +21,32 @@
 # 3. 2 steps + 1 step
 
 
-# bottom up dynamic programing
-
-#  we will start from the last step and work out way down
-# say we start with 5 steps
-# if we start at 5 then we only have one way gettig to 5 = 0 steps
-# if we start at 4 we have only one way to get to 5 and thats one step
-# if we start at 3 we take one step get to 4 and then we know 1 way to get to 5 from 4 
-# or we can take 2 steps and get to 5
-# from 2 we get 1 step to get to 3 and know that we have 2 ways to get to 5 from 3
-# we can take 2 steps from 2 and get to 4 and then have one wya to get to 5
-# this gives use 3 ways at 2
-# at 1 we can get to 2 with 1 step and 3 with 3 2 steps and we know 2 has 3 ways and 3 has 2 ways so 1 has 5 ways
-# and at 0 we have 1 step to 1 and two to 2 , 1 step has 5 ways to 5 and 2 has 3 ways that means step 0 is 8 ways and thats our answer 
-
 
 class Solution:
     def climbStairs(self, n: int) -> int:
-        # Initialize the number of ways to reach the last step (step n) and the second to last step (step n-1)
-        # Both initialized to 1 since there's only one way to stay on the last step or get to the last step from the second to last step
-        current_step, prior_step = 1, 1
-        #so current step = step 4 ad prior step = step 5
-        # Loop through from step 4 down to step 1 (n - 1 iterations)
-        # This loop builds the number of ways to reach the top from each step
-        for i in range(n - 1):
-            # Temporarily store the current number of ways to reach the last step from the current step
-            temp = current_step
-            print(current_step , prior_step)
-            # Update current_step to be the sum of the ways from the current step and the prior step
-            current_step = current_step + prior_step
-            print(current_step , prior_step)
-            # Iteration 1:step(5-1) new current = current_step = 1 , prior_step = 1 / start at step 3 have 2 options , 1 from 4 , 1 from 5
-            # Iteration 2:step(4-1) new current = current_step = 2 , prior_step = 1 / start at step 2 have 3 options , 2 from 3 , 1 from 4
-            # Iteration 3:step(3-1) new current = current_step = 3 , prior_step = 2 / start at step 1 have 5 options , 3 from 2 , 2 from 3    
-            # Iteration 4:step(2-1) new current = current_step = 5 , prior_step = 3 / start at step 0 have 8 options , 5 from 1 , 3 from 2  
-            # Total ways to climb 5 steps: 8
+        if n == 1:
+            return 1
+        if n == 2:
+            return 2
+        
+        options_to_get_to_current_step = [0] *(n+1)
+        # fill with zeros 
+        options_to_get_to_current_step[1] = 1
+        # one option to get to step 1 
+        options_to_get_to_current_step[2] = 2
+        # two options to get to step 2
 
-            # Update prior_step to the old value of current_step (before the update)
-            prior_step = temp
+        for i in range(3,n+1):
+            # the options to get to currnet step starting at 3 are the some of the options to get to one step under or 2 steps under
+            # so we are taking 1 or 2 steps to get to current and we know have stored the number of ways to get to those prior steps already
+            options_to_get_to_current_step[i] = options_to_get_to_current_step[i - 1] + options_to_get_to_current_step[i - 2]
 
-        return current_step
 
-# Example usage
+            # example with 5 steps
+            # we have one option to get to 1 and 2 options to get to 2
+            # to get to 3 we get there from steps 1 or 2 and we know 1 = 1 option 2 = 2 options so we now have 3 options to get to 3
+            # to get to 4 we can get there from step 2 or 3 and we have 2 options to 2 and 3 optiosn to 3 this make 5 options to 4
+            # to get to 5 we can go from 3 or 4 and we have 3 options to 3 adn 5 options to 4 so we have 8 options to 5
+
 sol = Solution()
 print(f"Total ways to climb 5 steps: {sol.climbStairs(5)}")

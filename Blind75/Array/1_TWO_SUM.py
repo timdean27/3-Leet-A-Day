@@ -21,13 +21,13 @@ class Solution(object):
     def twoSum(self, nums, target):
         hash = {}
         for i in range(len(nums)):
-            # if the diffrince from the target - nums[i] already in the hash then return index of that value and current i 
+            # find the diffrince of the target and current number if this exists in the hash then we return current number and the hash[diffrence]
             diffrence = target - nums[i]
+            print(diffrence)
             if diffrence in hash:
-                return[hash[diffrence] , i]
-            # if not then push the value of nums[i] into the hash to test vs future diffrences
-            hash[nums[i]] = i
-
+                return [i , hash[diffrence]]
+            else:
+                hash[nums[i]] = i
 sol = Solution()
 
 print(sol.twoSum(nums = [2,7,11,15], target = 9))

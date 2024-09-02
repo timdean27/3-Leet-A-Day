@@ -37,8 +37,8 @@ class Solution:
                     print(dp[a])
                     dp[a] = min(dp[a], 1 + dp[a - coins[i]])
                     print(dp)
-        # If dp[amount] is still amount + 1, then it's not possible to make that amount
-        return dp[amount] if dp[amount] != amount + 1 else -1
+        # If dp[amount] is still float('inf'), it's not possible to make that amount
+        return dp[amount] if dp[amount] != float('inf') else -1
 
 
 sol = Solution()

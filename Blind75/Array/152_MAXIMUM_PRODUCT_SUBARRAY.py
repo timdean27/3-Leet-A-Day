@@ -18,35 +18,67 @@
 # Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 
 
-class Solution(object):
-    def maxProduct(self, nums):
+# Rember we are not finding the largest product of 2 variables we are finding the largest consecutive substring 
+# example [2,3,-2,4] we get [2,3] = 6 , if we did [2,3,-2] we get -12 but we can not get back to positive becasue next value is 4, if the list kept going maybe we could 
+from typing import List
 
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
         if not nums:
             return 0
         
-        currentMax = nums[0]
-        currentMin = nums[0]
-        holdValue = nums[0]
-        result= nums[0]
+        currentMax = currentMin = result = nums[0]
 
-        # Iterate through the array
-        for i in range(1, len(nums)):
-            # Store the current values of max
-            holdValue = currentMax
-            if nums[i] < 0:
-                # Swap currentMax and currentMin when current is negative say current number is -4 and currentMin is -6 we want to set our current max to 24
-                currentMax = currentMin
-                currentMin = holdValue
-
-            # Update currentMax and currentMin
-            currentMax = max(nums[i], currentMax * nums[i])
-            currentMin = min(nums[i], currentMin * nums[i])
+        for i in range( 1, len(nums)):
+            # we use the temp varible since we are using currentMax to compute currentMin and we dont want to change value before both can be checked
+            tempMax = max(nums[i] , currentMax * nums[i] , currentMin * nums[i])
+            currentMin= min(nums[i] , currentMax * nums[i] , currentMin * nums[i])
+            currentMax = tempMax
             
-            # Update result
             result = max(result, currentMax)
-
         return result
-    
+
+sol = Solution()
+print(sol.maxProduct([-2]))  # Output: -2
+print(sol.maxProduct([0, 2]))  # Output: 2
+print(sol.maxProduct([-2, 3, -4]))  # Output: 24   
+
+
+
+
+# class Solution(object):
+#     def maxProduct(self, nums):
+
+#         if not nums:
+#             return 0
+        
+#         currentMax = nums[0]
+#         currentMin = nums[0]
+#         holdValue = nums[0]
+#         result= nums[0]
+
+#         # Iterate through the array
+#         for i in range(1, len(nums)):
+#             # Store the current values of max
+#             holdValue = currentMax
+#             if nums[i] < 0:
+#                 # Swap currentMax and currentMin when current is negative say current number is -4 and currentMin is -6 we want to set our current max to 24
+#                 currentMax = currentMin
+#                 currentMin = holdValue
+
+#             # Update currentMax and currentMin
+#             currentMax = max(nums[i], currentMax * nums[i])
+#             currentMin = min(nums[i], currentMin * nums[i])
+            
+#             # Update result
+#             result = max(result, currentMax)
+
+#         return result
+
+# sol = Solution()
+# print(sol.maxProduct([-2]))  # Output: -2
+# print(sol.maxProduct([0, 2]))  # Output: 2
+# print(sol.maxProduct([-2, 3, -4]))  # Output: 24   
 
 # for array [-2, 3, -4]
 # set currentMax = currentMin = result= nums[0]
@@ -91,8 +123,3 @@ class Solution(object):
 
 # result = max(3, 24)
 # New result: 24
-
-sol = Solution()
-print(sol.maxProduct([-2]))  # Output: -2
-print(sol.maxProduct([0, 2]))  # Output: 2
-print(sol.maxProduct([-2, 3, -4]))  # Output: 24

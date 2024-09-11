@@ -79,3 +79,29 @@ print(sol.maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
 # currentSum + 4 = 2 (extending [1, -3, 4])
 # Starting fresh with 4 is better: currentSum = 4
 # Update maxSum = 4
+
+
+# simpler solution
+
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+        
+        currentMax = nums[0]
+        finalMax = nums[0]
+
+        
+        for i in range(1, len(nums)):
+            currentMax = max(nums[i] , currentMax + nums[i])
+            finalMax = max(currentMax , finalMax)
+
+        
+        return finalMax
+
+sol = Solution()
+print(sol.maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))

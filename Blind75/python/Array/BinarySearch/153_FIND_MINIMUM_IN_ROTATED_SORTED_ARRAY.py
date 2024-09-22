@@ -28,32 +28,29 @@
 
 
 
-
+# for this problem it does not matter the rotations much
+# we are just doing binary search
+# left mid and right
+# if mid is higher than the right then we know that the min must be between right adn mid , so we set left to mid+1 and restart
+# If nums[mid] <= nums[right]:This suggests that the minimum is either at mid or in the left half (including mid itself) because the right half is already sorted (if nums[mid] <= nums[right]).
 class Solution(object):
     def findMin(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        right = len(nums) - 1
         left = 0
-        # If the array is already sorted and not rotated, return the first element.
-        if nums[left] < nums[right]:
-            return nums[left]
-        # find the piviot where left is no longer increaseing and right is no longer decresing 
-        while right > left + 1:
-            # print(nums[left], nums[right] )
-            if nums[left] > nums[left + 1]:
-                # if value of left+1 is less then the current left it means we stoped increase and hit the lowest value
-                return nums[left + 1]
-            if nums[right] < nums[right - 1]:
-                # if value of right-1 is greater then the current right it means we stoped decreaseing and hit the lowest value
-                return nums[right]
+        right = len(nums)-1
+
+        while(left < right):
+            mid = (right + left) // 2  # Use integer division to avoid floating-point issues
+            if(nums[right]< nums[mid]):
+                left = mid+1
             else:
-                left +=1
-                right -=1
-            # when we it the piviot point exit the while loop and return the min of the two final values
-        return min(nums[left] , nums[right])
+                right = mid
+
+        return nums[left]
+        
 
 
 sol = Solution()

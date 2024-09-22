@@ -21,19 +21,12 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        numSelf = 0
-        answer = [0] * len(nums)
-        
-        while numSelf < len(nums):
-            total = 1
-            for i in range(len(nums)):
-                if i != numSelf:
-                    # the product of all other numbers
-                    total *= nums[i]
-            answer[numSelf] = total
-            numSelf += 1
-        
-        return answer
+        forwardArr = []
+        start = 1
+
+        for i in range(len(nums)):
+            
+
 
 sol = Solution()
-print(sol.productExceptSelf(nums=[1, 2, 3, 4]))
+print(sol.productExceptSelf(nums=[1, 2, 3, 4])) # Output: [24,12,8,6] 

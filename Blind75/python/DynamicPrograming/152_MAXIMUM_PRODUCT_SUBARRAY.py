@@ -27,21 +27,24 @@ class Solution:
         if not nums:
             return 0
         
-        currentMax = currentMin = result = nums[0]
+        # set the current max to nums
+        currentMax = currentMin = tempMax = result = nums[0]
 
-        for i in range( 1, len(nums)):
-            # we use the temp varible since we are using currentMax to compute currentMin and we dont want to change value before both can be checked
-            tempMax = max(nums[i] , currentMax * nums[i] , currentMin * nums[i])
-            currentMin= min(nums[i] , currentMax * nums[i] , currentMin * nums[i])
+        for i in range(len(nums)):
+            # check for nex max in temp max , between current nums[i] , and if this new number increases product by mutiplying to current max or current min
+            tempMax = max(nums[i], currentMax*nums[i] , currentMin*nums[i])
+            # store current min , incase next number is negative which will create a new max
+            currentMin = min(nums[i] , currentMax*nums[i] , currentMin*nums[i])
+            # save tempmax to current max
             currentMax = tempMax
-            
+
+            # check if max is a previous max or the current max
             result = max(result, currentMax)
         return result
 
 sol = Solution()
-print(sol.maxProduct([-2]))  # Output: -2
-print(sol.maxProduct([0, 2]))  # Output: 2
-print(sol.maxProduct([-2, 3, -4]))  # Output: 24   
+
+print(sol.maxProduct([2,3,-2,4]))  # Output: 6   Explanation: [2,3] has the largest product 6.
 
 
 

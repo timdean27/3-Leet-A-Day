@@ -92,12 +92,12 @@ class Solution(object):
         if not nums:
             return 0
         
-        currentMax = nums[0]
-        finalMax = nums[0]
-
-        
+        currentMax = finalMax = nums[0]
+        # we dont need to store the array on the sum of the subarry
         for i in range(1, len(nums)):
+            # check if current value is larger than adding current value to current max
             currentMax = max(nums[i] , currentMax + nums[i])
+            # check if this new found max is larger than privous found one
             finalMax = max(currentMax , finalMax)
 
         

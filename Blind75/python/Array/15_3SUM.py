@@ -24,36 +24,47 @@
 # Input: nums = [0,0,0]
 # Output: [[0,0,0]]
 # Explanation: The only possible triplet sums up to 0.
+ 
 from typing import List
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        nums.sort()  # Sort the list to handle duplicates easily
-        answer = []
+        # Step 1: Sort the nums array 
+        nums.sort()
+        result = []
         
-        for i in range(len(nums)):
-            # To avoid duplicates, skip the same value
+        # Step 2: Iterate through the array until the second-to-last element
+        # we can use len(nums -2) becasue we know right will start at len(nums) -1
+        for i in range(len(nums) - 2):
+            # Skip duplicates for the first number
             if i > 0 and nums[i] == nums[i - 1]:
-                continue # continue means skip to next value of loop 
+                continue
+            # set pointers
+            left = i + 1
+            right = len(nums) - 1
             
-            left = i +1
-            right = len(nums) -1
-
             while left < right:
-                threeSum = nums[i] + nums[left] + nums[right]
-                if threeSum > 0:
+                sumNums = nums[i] + nums[left] + nums[right]
+                # if sum of numbers is less than zero we shift the left up increaseing value (left is lowest)
+                if sumNums < 0:
+                    left += 1
+                # if sum of numbers is greater than zero we shift the right down decreasing value (right is largest)
+                elif sumNums > 0:
                     right -= 1
-                elif threeSum < 0:
-                    left += 1
-                else:
-                    answer.append([nums[i], nums[left], nums[right]])
-                    # only shift left pointer the loop will handle the situation where right is too larger 
-                    left += 1
-                    while nums[left] == nums[left -1] and left < right:
+                # if sum of 3 numbers is zero push array triple to result
+                elif sumNums == 0:
+                    result.append([nums[i], nums[left], nums[right]])
+                    # increment the left value
+                    left +=1
+                    # check if the new left value is a duplicite of the last left value if it is increment again
+                    while nums[left] == nums[left-1] and left < right:
                         left +=1
-        return answer
+      
+        
+        return result
+
+
+
+
 sol = Solution()
 print(sol.threeSum(nums = [-1,0,1,2,-1,-4]))
-# Output: [[-1,-1,2],[-1,0,1]]
-
-

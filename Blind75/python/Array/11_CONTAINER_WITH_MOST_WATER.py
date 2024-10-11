@@ -30,8 +30,9 @@ class Solution:
         currentMax = 0
 
         while left<right:
-            # currentArea = min(height[left] , height[right]) * (right - left)
-            currentMax = max(currentMax , min(height[left] , height[right]) * (right - left))
+            # current area is the min of the sides * the length of the bottom
+            currentArea = min(height[left] , height[right]) * (right - left)
+            currentMax = max(currentMax , currentArea)
 
             if(height[left] < height[right]):
                 left += 1
@@ -43,4 +44,4 @@ class Solution:
 sol = Solution()
 
 # print(sol.maxArea(height = [1,8,6,2,5,4,8,3,7]))
-print(sol.maxArea(height = [1,3,2,5,25,24,5]))
+print(sol.maxArea(height = [1,3,2,5,25,24,5])) 

@@ -21,7 +21,7 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         hashMap = {}
-        left = right = topFrequency = longest= 0 
+        left = right = charMostFreq_inSubstrng = longest= 0 
 
         while(right < len(s)):
 
@@ -32,16 +32,19 @@ class Solution:
             hashMap[s[right]] = hashMap.get(s[right], 0) + 1
 
             # Update the topFrequency (most frequent character in the current window)
-            topFrequency = max(topFrequency , hashMap[s[right]])
+            charMostFreq_inSubstrng = max(charMostFreq_inSubstrng , hashMap[s[right]])
 
             # If the current window (right - left + 1) is invalid (i.e., too many characters to replace)
-            if (right - left + 1) - topFrequency > k:
+            # meaning if right - left is full length of substring , the length - frequency is the amount of chracters that are not the one we want
+            # if this is greater than k then we do not have enough moves to replace
+            # example if ABAAABA length = 7 (6-0)+1 , A = 5 , means we have 2 that must be replaced if k = 1 then we must shift the window
+            if ((right - left) + 1) - charMostFreq_inSubstrng > k:
                 # Shrink the window by moving the left pointer
                 hashMap[s[left]] -= 1
                 left += 1
 
             # Update the longest valid substring found so far
-            longest = max(longest, right - left + 1)
+            longest = max(longest, (right - left) + 1)
             # Move the right pointer to expand the window
             right += 1
         return longest

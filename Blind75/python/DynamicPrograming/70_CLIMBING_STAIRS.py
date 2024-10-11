@@ -37,9 +37,15 @@ class Solution:
         # two options to get to step 2
 
         for i in range(3,n+1):
-            # the options to get to currnet step starting at 3 are the some of the options to get to one step under or 2 steps under
-            # so we are taking 1 or 2 steps to get to current and we know have stored the number of ways to get to those prior steps already
+            # the amount to get to current step is the options to get to 1 step back + options to get to 2 steps back
+            # example step 3 is option to get to 1 = 1 step and options to get to step 2 = 2 (1 step + 1 Step or 2 steps) so options to get to step 3 = 3 options
             options_to_get_to_current_step[i] = options_to_get_to_current_step[i - 1] + options_to_get_to_current_step[i - 2]
+
+        return options_to_get_to_current_step[n]
+
+
+sol = Solution()
+print(f"Total ways to climb 5 steps: {sol.climbStairs(5)}")
 
 
             # example with 5 steps
@@ -47,6 +53,3 @@ class Solution:
             # to get to 3 we get there from steps 1 or 2 and we know 1 = 1 option 2 = 2 options so we now have 3 options to get to 3
             # to get to 4 we can get there from step 2 or 3 and we have 2 options to 2 and 3 optiosn to 3 this make 5 options to 4
             # to get to 5 we can go from 3 or 4 and we have 3 options to 3 adn 5 options to 4 so we have 8 options to 5
-
-sol = Solution()
-print(f"Total ways to climb 5 steps: {sol.climbStairs(5)}")

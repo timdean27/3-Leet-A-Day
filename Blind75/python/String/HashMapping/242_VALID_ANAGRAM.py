@@ -24,7 +24,10 @@ class Solution:
         hashMap = {}
         # Count the frequency of characters in the first string 's'
         for char in s:
-            hashMap[char] = hashMap.get(char, 0) + 1
+            if char in hashMap:
+                hashMap[char] += 1
+            else:
+                hashMap[char] = 1
         # Reduce the frequency of characters in the second string 't'
         for char in t:
             if char in hashMap:

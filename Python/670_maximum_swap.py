@@ -18,22 +18,23 @@
 
 class Solution:
     def maximumSwap(self, num: int) -> int:
-        num = list(str(num))
+        # Convert the number to a list of digits (as characters)
+        num_list = list(str(num))
         # we will want to swap the largest value with the value of most significance 
         left = 0
-        while left < len(num):
-            largest = num[left]
+        while left < len(num_list):
+            largest = num_list[left]
             indexLargest = left
-            for i in range(left+1,len(num)):
-                if num[i] >= largest:
-                    largest = num[i]
+            for i in range(left+1,len(num_list)):
+                if num_list[i] >= largest:
+                    largest = num_list[i]
                     indexLargest = i
             # Swap if we found a larger digit further in the list
-            if left != indexLargest and largest != num[left]:
-                num[left], num[indexLargest] = num[indexLargest], num[left]
+            if left != indexLargest and largest != num_list[left]:
+                num_list[left], num_list[indexLargest] = num_list[indexLargest], num_list[left]
                 break  #once swap is complete we break we only need one swap
             left += 1
-        return int("".join(num))
+        return int("".join(num_list))
 
 
 

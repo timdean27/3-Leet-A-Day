@@ -23,21 +23,48 @@
 # Input: folder = ["/a/b/c","/a/b/ca","/a/b/d"]
 # Output: ["/a/b/c","/a/b/ca","/a/b/d"]
 
-
-
 from typing import List
 class Solution:
     def removeSubfolders(self, folder: List[str]) -> List[str]:
         # Sort the folders to ensure that parent folders come before subfolders
-        folder.sort()
+        folder_set = set(folder)
         result = []
 
         for path in folder:
-            # If result is empty or the current path is not a subfolder of the last added path
-            if len(result) == 0 or path.startswith(result[-1] + '/') == False:
                 result.append(path)
+                for i in range(len(path)):
+                    #  for each / in path we check the subset leading before the / and if it already exists then we know it is a subfolder and should not be added
+                    # example if we are testing /a/b/c we check / and path[:i] == null so continue
+                    #  we then check / before b and path[:i] = "a/b" if this is in fodler_set then we know its subfolder and shoulnt be added
+                    #  we then check / before c and path[:i] = a/b/c same thing
+                     if path[i] == "/" and path[:i] in folder_set:
+                        result.pop()
+                        break
 
         return result
 
 sol = Solution()
 print(sol.removeSubfolders(["/a","/a/b","/c/d","/c/d/e","/c/f"]))
+
+
+
+
+
+
+
+# from typing import List
+# class Solution:
+#     def removeSubfolders(self, folder: List[str]) -> List[str]:
+#         # Sort the folders to ensure that parent folders come before subfolders
+#         folder.sort()
+#         result = []
+
+#         for path in folder:
+#             # If result is empty or the current path is not a subfolder of the last added path
+#             if len(result) == 0 or path.startswith(result[-1] + '/') == False:
+#                 result.append(path)
+
+#         return result
+
+# sol = Solution()
+# print(sol.removeSubfolders(["/a","/a/b","/c/d","/c/d/e","/c/f"]))

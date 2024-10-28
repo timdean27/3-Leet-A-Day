@@ -54,3 +54,27 @@ print(sol.rob(nums = [2, 7, 9, 3, 1]))
 # dp[2] = max(dp[1], nums[2] + dp[0]) = max(7, 9 + 2) = max(7, 11) = 11
 # dp[3] = max(dp[2], nums[3] + dp[1]) = max(11, 3 + 7) = max(11, 10) = 11  , skip house 3 , keeping what we have so far
 # dp[4] = max(dp[3], nums[4] + dp[2]) = max(11, 1 + 11) = max(11, 12) = 12
+
+
+
+
+from typing import List
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        
+        rob1 , rob2 = 0 , 0
+        for i in range(len(nums)):
+            newRob = max(rob1 + nums[i], rob2)
+            rob1 = rob2
+            rob2 = newRob
+        
+        return rob2
+
+
+sol = Solution
+print(sol.rob(nums = [2, 7, 9, 3, 1]))

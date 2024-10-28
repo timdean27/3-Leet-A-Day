@@ -18,7 +18,8 @@
 # Total amount you can rob = 2 + 9 + 1 = 12.
 
 
-
+ 
+from typing import List
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
@@ -36,8 +37,10 @@ class Solution:
             prior = i -1
             # check if it is better to use the prior sotred value or if is better to add current value to two prior
             #  if the new value does not increase you above the house you have orbbed so far then skip it
-            dp[i] = max(dp[prior] , nums[i]+ twoPrior)
+            dp[i] = max(dp[prior] , nums[i]+ dp[twoPrior])
 
+        # The last element in dp represents the maximum money we can rob
+        return dp[-1]
 
 
 

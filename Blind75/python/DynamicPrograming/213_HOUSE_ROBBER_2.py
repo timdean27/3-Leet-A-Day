@@ -23,3 +23,31 @@
 
  
 from typing import List
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        # Handle edge cases
+        if not nums:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        if len(nums) == 2:
+            return max(nums)
+
+        def helpfun(nums: List[int]) -> int:
+            rob1, rob2 = 0, 0
+            
+            for i in range(len(nums)):
+                newRob = max(rob1 + nums[i], rob2)
+                rob1 = rob2
+                rob2 = newRob
+            
+            return rob2
+
+        # Calculate the maximum money by considering two scenarios:
+        # Scenario 1: Exclude the last house
+        # Scenario 2: Exclude the first house
+        return max(helpfun(nums[:-1]), helpfun(nums[1:]))
+
+sol = Solution
+print(sol.rob([2,3,2]))

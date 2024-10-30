@@ -32,11 +32,9 @@ class Solution:
         # Iterate over each coin
         for a in range(1, amount + 1):
             for i in range(len(coins)):
-                if a - coins[i] >= 0:
-                    # if current amount is >=0 we find the min
-                    print(dp[a])
-                    dp[a] = min(dp[a], 1 + dp[a - coins[i]])
-                    print(dp)
+                remainder = a - coins[i]
+                if remainder >= 0:
+                    dp[a] = min(dp[a], 1+[dp[remainder]])
         # If dp[amount] is still float('inf'), it's not possible to make that amount
         return dp[amount] if dp[amount] != float('inf') else -1
 

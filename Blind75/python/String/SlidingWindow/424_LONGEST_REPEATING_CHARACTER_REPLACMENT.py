@@ -20,35 +20,24 @@
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        hashMap = {}
-        left = right = charMostFreq_inSubstrng = longest= 0 
+        countChars = {}
+        left = longest= 0 
 
-        while(right < len(s)):
+        for right in range(len(s)):
+            # map the frequincey of characters in s
+            countChars[s[right]] = 1 + countChars.get(s[right],0)
+            windowLen = (right - left)+ 1
+            # check that the characters in the current window are 
+            # all the max character excepet the acceptable amount of values we can replace k
+            while (windowLen - max(countChars.values()) > k):
+                countChars[s[left]] -= 1
+                left +=1
+                windowLen = (right - left)+ 1
 
-            # This attempts to retrieve the value for the key s[right] from the dictionary hashMap.
-            # If the key exists in hashMap, it returns the corresponding value.
-            # If the key does not exist, it returns the default value 0.
-            # Whether the value is retrieved (an existing count) or 0 (for a new character), it adds 1 to that value.
-            hashMap[s[right]] = hashMap.get(s[right], 0) + 1
+            longest = max(longest , windowLen)
 
-            # Update the topFrequency (most frequent character in the current window)
-            charMostFreq_inSubstrng = max(charMostFreq_inSubstrng , hashMap[s[right]])
-
-            # If the current window (right - left + 1) is invalid (i.e., too many characters to replace)
-            # meaning if right - left is full length of substring , the length - frequency is the amount of chracters that are not the one we want
-            # if this is greater than k then we do not have enough moves to replace
-            # example if ABAAABA length = 7 (6-0)+1 , A = 5 , means we have 2 that must be replaced if k = 1 then we must shift the window
-            if ((right - left) + 1) - charMostFreq_inSubstrng > k:
-                # Shrink the window by moving the left pointer
-                hashMap[s[left]] -= 1
-                left += 1
-
-            # Update the longest valid substring found so far
-            longest = max(longest, (right - left) + 1)
-            # Move the right pointer to expand the window
-            right += 1
         return longest
-
+        
 
 sol = Solution()
 print(sol.characterReplacement(s = "ABAB", k = 2))

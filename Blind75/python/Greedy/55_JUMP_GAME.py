@@ -14,8 +14,39 @@
 # Input: nums = [3,2,1,0,4]
 # Output: false
 # Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
- 
 
+
+#DP
+from typing import List
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        # Array to keep track of the farthest index we can reach from each position
+        dp = [0] * len(nums)
+        dp[0] = nums[0]  # Initialize the furthest position we can reach from the start
+
+        for i in range(1, len(nums)):
+            # If the previous dp[i-1] is less than i, we can't reach this position
+            if dp[i - 1] < i:
+                return False
+            
+            # Update dp[i] to be the maximum of current farthest reach or jump from nums[i]
+            dp[i] = max(dp[i - 1], i + nums[i])
+            print(f"At index {i}: max reach = {dp[i]}")
+            
+            # If we can reach or exceed the last index, return True
+            if dp[i] >= len(nums) - 1:
+                return True
+
+        # Final result based on the last element in dp array
+        return dp[-1] >= len(nums) - 1
+
+# Test case
+sol = Solution()
+print(sol.canJump(nums=[2, 3, 1, 1, 4]))  # Expected output: True
+
+
+# GREEDY
 from typing import List
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
@@ -31,7 +62,7 @@ class Solution:
             #  if at some point furthest_we_can_jump remains the largest and its less than len(nums) we cant jump out
             furthest_we_can_jump = max(furthest_we_can_jump , i + nums[i])
             print(furthest_we_can_jump)
-            
+
             if furthest_we_can_jump >= len(nums) - 1:
                 return True
 

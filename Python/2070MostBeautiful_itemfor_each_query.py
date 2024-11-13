@@ -26,6 +26,7 @@
 # The price of every item is equal to 1, so we choose the item with the maximum beauty 4. 
 # Note that multiple items can have the same price and/or beauty.  
 
+from typing import List
 
 class Solution:
     def maximumBeauty(self, items: List[List[int]], queries: List[int]) -> List[int]:
@@ -43,3 +44,28 @@ class Solution:
         
 sol = Solution
 print(sol.maximumBeauty(items = [[1,2],[1,2],[1,3],[1,4]], queries = [1]))
+
+
+# more effecent solution
+
+
+class Solution:
+    def maximumBeauty(self, items: List[List[int]], queries: List[int]) -> List[int]:
+        # Sort items by price
+        items.sort()
+        
+        # Sort queries along with their original indices
+        sorted_queries = sorted((q, idx) for idx, q in enumerate(queries))
+        
+        output = [0] * len(queries)  # To store results in the order of original queries
+        max_for_query = 0
+        start_index = 0
+
+        for num, original_index in sorted_queries:
+            # Find the maximum beauty for the current query
+            while start_index < len(items) and items[start_index][0] <= num:
+                max_for_query = max(max_for_query, items[start_index][1])
+                start_index += 1
+            output[original_index] = max_for_query  # Store result in original query order
+        
+        return output

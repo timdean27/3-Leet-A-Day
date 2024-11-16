@@ -49,8 +49,8 @@ print(sol.maximumBeauty(items = [[1,2],[1,2],[1,3],[1,4]], queries = [1]))
 # more effecent solution
 
 
-class Solution:
-    def maximumBeauty(self, items: List[List[int]], queries: List[int]) -> List[int]:
+class Solution2:
+    def maximumBeauty2(self, items: List[List[int]], queries: List[int]) -> List[int]:
         # Sort items by price
         items.sort()
         
@@ -69,3 +69,5 @@ class Solution:
             output[original_index] = max_for_query  # Store result in original query order
         
         return output
+sol = Solution2
+print(sol.maximumBeauty2(items = [[1,2],[1,2],[1,3],[1,4]], queries = [1]))

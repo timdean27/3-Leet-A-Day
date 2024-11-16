@@ -39,4 +39,4 @@ class Solution:
 
 
 sol = Solution()
-print(sol.maximumSwap(1993)) #--> 9913
+print(sol.maximumSwap(1993)) 

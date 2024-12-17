@@ -49,33 +49,33 @@ print(sol.maxProduct([2,3,-2,4]))  # Output: 6   Explanation: [2,3] has the larg
 
 
 
-# class Solution(object):
-#     def maxProduct(self, nums):
+class Solution(object):
+    def maxProduct(self, nums):
 
-#         if not nums:
-#             return 0
+        if not nums:
+            return 0
         
-#         currentMax = nums[0]
-#         currentMin = nums[0]
-#         result= nums[0]
+        currentMax = nums[0]
+        currentMin = nums[0]
+        result= nums[0]
 
-#         # Iterate through the array
-#         for i in range(1, len(nums)):
-#             # Store the current values of max
-#             holdValue = currentMax
-#             if nums[i] < 0:
-#                 # Swap currentMax and currentMin when current is negative say current number is -4 and currentMin is -6 we want to set our current max to 24
-#                 currentMax = currentMin
-#                 currentMin = holdValue
+        # Iterate through the array
+        for i in range(1, len(nums)):
+            # Store the current values of max
+            holdValue = currentMax
+            if nums[i] < 0:
+                # Swap currentMax and currentMin when current is negative say current number is -4 and currentMin is -6 we want to set our current max to 24
+                currentMax = currentMin
+                currentMin = holdValue
 
-#             # Update currentMax and currentMin
-#             currentMax = max(nums[i], currentMax * nums[i])
-#             currentMin = min(nums[i], currentMin * nums[i])
+            # Update currentMax and currentMin
+            currentMax = max(nums[i], currentMax * nums[i])
+            currentMin = min(nums[i], currentMin * nums[i])
             
-#             # Update result
-#             result = max(result, currentMax)
+            # Update result
+            result = max(result, currentMax)
 
-#         return result
+        return result
 
 # sol = Solution()
 # print(sol.maxProduct([-2]))  # Output: -2
